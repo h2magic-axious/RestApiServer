@@ -8,6 +8,9 @@ class Product(models.Model):
     alias = models.CharField(max_length=50, default='')
     excerpt = models.TextField(default='')
 
+    def __repr__(self):
+        return self.name
+
     class Meta:
         db_table = 'trinamic_product'
 
@@ -20,6 +23,9 @@ class Category(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
+    def __repr__(self):
+        return self.name
+
     class Meta:
         db_table = 'trinamic_category'
 
@@ -30,6 +36,9 @@ class Item(models.Model):
     excerpt = models.TextField(default='')
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __repr__(self):
+        return self.model
 
     class Meta:
         db_table = 'trinamic_item'
