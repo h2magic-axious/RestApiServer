@@ -5,8 +5,8 @@ from django.db import models
 class Product(models.Model):
     id = models.AutoField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=50)
-    alias = models.CharField(max_length=50, default=None)
-    excerpt = models.TextField(default=None)
+    alias = models.CharField(max_length=50, default='')
+    excerpt = models.TextField(default='')
 
     class Meta:
         db_table = 'trinamic_product'
@@ -15,8 +15,8 @@ class Product(models.Model):
 class Category(models.Model):
     id = models.AutoField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=50)
-    alias = models.CharField(max_length=50, default=None)
-    excerpt = models.TextField(default=None)
+    alias = models.CharField(max_length=50, default='')
+    excerpt = models.TextField(default='')
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
@@ -27,4 +27,9 @@ class Category(models.Model):
 class Item(models.Model):
     id = models.BigAutoField(primary_key=True, auto_created=True)
     model = models.CharField(max_length=50)
-    excerpt = models.TextField(default=None)
+    excerpt = models.TextField(default='')
+
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'trinamic_item'
