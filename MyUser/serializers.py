@@ -1,20 +1,8 @@
 from rest_framework import serializers
-from Trinamic.models import Product, Category, Item
+from MyUser.models import User
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Product
-        fields = ['id', 'name', 'alias', 'excerpt', 'category_set']
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id', 'name', 'alias', 'excerpt', 'product_id', 'item_set']
-
-
-class ItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Item
-        fields = ['id', 'model', 'excerpt', 'category_id']
+        model = User
+        fields = ['id', 'username', 'email']
