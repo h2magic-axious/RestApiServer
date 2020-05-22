@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'corsheaders',
 
     'Trinamic'
 ]
@@ -49,6 +50,44 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware'
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+ # 允许携带cookie
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = (
+    'http://127.0.0.1:8080',
+    'http://localhost:8080',
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'VIEW',
+)
+CORS_ALLOW_HEADERS = [
+    '*',
+    'dnt',
+    'source',
+    'origin',
+    'Pragma',
+    'accept',
+    'user-agent',
+    'x-csrftoken',
+    'X_FILENAME',
+    'content-type',
+    'authorization',
+    'authentication',
+    'XMLHttpRequest',
+    'accept-encoding',
+    "x-requested-with",
 ]
 
 ROOT_URLCONF = 'ChiplinksWeb.urls'
