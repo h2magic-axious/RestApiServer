@@ -23,8 +23,8 @@ def random_name(n=5):
 def random_text():
     return ''.join(random.choice(words) for _ in range(30))
 
-if __name__ == '__main__':
 
+def gen():
     Product.objects.all().delete()
     Category.objects.all().delete()
     Item.objects.all().delete()
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     User.objects.all().delete()
 
     print("create a super user")
-    user = User.objects.create_superuser('admin', 'admin@admin.com', 'admin')
+    User.objects.create_superuser('admin', 'admin@admin.com', 'admin')
 
     for pid in range(5):
         pro = random_name(3)
