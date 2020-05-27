@@ -21,6 +21,9 @@ class Category(models.Model):
     alias = models.CharField(max_length=50, default='')
     excerpt = models.TextField(default='')
 
+    fields = models.TextField(default='')
+    display_fields = models.TextField(default='')
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __repr__(self):
@@ -35,7 +38,7 @@ class Item(models.Model):
     model = models.CharField(max_length=50)
     excerpt = models.TextField(default='')
 
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
 
     def __repr__(self):
         return self.model
