@@ -55,13 +55,15 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
- # 允许携带cookie
+# 允许携带cookie
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_WHITELIST = (
-    'http://127.0.0.1:8080',
-    'http://localhost:8080',
-)
+CORS_ALLOW_PROTS = [
+    8000,8900
+]
+
+CORS_ORIGIN_WHITELIST = [f"http://127.0.0.1:{port}" for port in CORS_ALLOW_PROTS] + \
+                        [f"http://localhost:{port}" for port in CORS_ALLOW_PROTS]
 
 CORS_ALLOW_METHODS = (
     'DELETE',
