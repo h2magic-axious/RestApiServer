@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from MyUser.models import User
+from MyUser.models import TmcUser
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['id', 'username', 'email']
+        model = TmcUser
+        fields = ['id', 'username', 'password', 'email', 'is_superuser']

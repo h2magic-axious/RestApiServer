@@ -1,15 +1,13 @@
-import os, pathlib, random, sys
+import os, random, sys
 import django
 
+sys.path.append(r"E:\WorkSpace\ChiplinksWeb")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ChiplinksWeb.settings")
 django.setup()
 
 from Trinamic.models import Product, Category, Item
-from django.contrib.auth.models import User
+from MyUser.models import TmcUser
 from FieldValue.models import FieldValue, Field
-
-BASE_DIR = pathlib.Path(__file__).parent.parent
-sys.path.append(BASE_DIR)
 
 words = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -27,10 +25,10 @@ def gen():
     Category.objects.all().delete()
     Item.objects.all().delete()
 
-    User.objects.all().delete()
+    TmcUser.objects.all().delete()
 
     print("create a super user")
-    User.objects.create_superuser('admin', 'admin@admin.com', 'admin')
+    TmcUser.objects.create_superuser('admin', 'admin@admin.com', 'admin')
 
     for pid in range(5):
         pro = random_name(3)
@@ -50,3 +48,6 @@ def gen():
     items = [i.id for i in Item.objects.all()]
     for fvid in range(300):
         FieldValue.objects.create(field=random.choice(fields), value=random_name(10), item_id=random.choice(items))
+
+if __name__ == '__main__':
+    gen()
