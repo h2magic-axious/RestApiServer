@@ -13,13 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+
 from django.urls import path, include
+from rest_framework_jwt.views import ObtainJSONWebToken
 
 RESTFUL_URL = 'api/private/v1/'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(RESTFUL_URL + 'login', ObtainJSONWebToken.as_view()),
     path(RESTFUL_URL, include('Trinamic.urls')),
     path(RESTFUL_URL, include('MyUser.urls'))
 ]
