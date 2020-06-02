@@ -22,5 +22,6 @@ RESTFUL_URL = 'api/private/v1/'
 urlpatterns = [
     path(RESTFUL_URL + 'login', ObtainJSONWebToken.as_view()),
     path(RESTFUL_URL, include('Trinamic.urls')),
-    path(RESTFUL_URL, include('MyUser.urls'))
+    path(RESTFUL_URL, include('MyUser.urls')),
+    path(RESTFUL_URL, include('FieldValue.urls'))
 ]

@@ -76,7 +76,7 @@ def create_fieldvalue(n=10):
         fields = random.sample(f_ids, random.randint(0, n))
         for f_id in fields:
             print('category fieldvalue for ' + i.model)
-            FieldValue.objects.create(field=f_id, value=random_text(5), item=i)
+            FieldValue.objects.create(field_id=f_id, value=random_text(5), item=i)
 
 
 def gen():

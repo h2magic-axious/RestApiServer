@@ -21,8 +21,7 @@ class Category(models.Model):
     alias = models.CharField(max_length=50, default='')
     excerpt = models.TextField(default='')
 
-    fields = models.TextField(default='')
-    display_fields = models.TextField(default='')
+    fields = models.TextField(default='', blank=True)
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 

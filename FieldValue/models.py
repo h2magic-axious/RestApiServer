@@ -14,9 +14,9 @@ class Field(models.Model):
 
 class FieldValue(models.Model):
     id = models.AutoField(primary_key=True, auto_created=True)
-    field = models.IntegerField()
     value = models.TextField(default='')
 
+    field = models.ForeignKey(Field, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
     class Meta:
