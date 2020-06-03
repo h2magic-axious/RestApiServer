@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 
     'MyUser',
     'Trinamic',
-    'FieldValue'
+    'FieldValue',
+    'Media'
 ]
 
 AUTH_USER_MODEL = 'MyUser.TmcUser'

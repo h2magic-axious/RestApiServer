@@ -10,6 +10,7 @@ django.setup()
 from Trinamic.models import Product, Category, Item
 from MyUser.models import TmcUser
 from FieldValue.models import FieldValue, Field
+from Media.models import Media, MEDIA_TYPES
 
 words = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -79,6 +80,20 @@ def create_fieldvalue(n=10):
             FieldValue.objects.create(field_id=f_id, value=random_text(5), item=i)
 
 
+def create_media(n=20):
+    items = [i.id for i in Item.objects.all()]
+    for _ in range(n):
+        title = random_text(3)
+        print("create media: ", title)
+        Media.objects.create(title=title,
+                             filename=random_text(5),
+                             media_type=random.choice([MEDIA_TYPES])[0],
+                             item_id=random.choice(items),
+                             origin_url=f"http://{random_text(10)}",
+                             using_url=f"http://{random_text(20)}"
+                             )
+
+
 def gen():
     clear_database()
 
@@ -88,6 +103,7 @@ def gen():
     create_item(10)
     create_field()
     create_fieldvalue()
+    create_media()
 
 
 if __name__ == '__main__':
