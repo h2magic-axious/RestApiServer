@@ -65,7 +65,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_PROTS = [
-    8000,8900
+    8000, 8900
 ]
 
 CORS_ORIGIN_WHITELIST = [f"http://127.0.0.1:{port}" for port in CORS_ALLOW_PROTS] + \
@@ -101,6 +101,7 @@ CORS_ALLOW_HEADERS = [
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=365),  # 设置 JWT Token 的有效时间
     'JWT_AUTH_HEADER_PREFIX': 'JWT',  # 设置 请求头中的前缀
+    'JWT_ALLOW_REFRESH': True,
 }
 
 REST_FRAMEWORK = {

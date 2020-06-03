@@ -5,6 +5,7 @@ from rest_framework_jwt.utils import jwt_decode_handler
 from django.http import JsonResponse
 from rest_framework.permissions import IsAuthenticated
 
+
 def get_user(request):
     token = request.GET.get('token', None)
     if token:
