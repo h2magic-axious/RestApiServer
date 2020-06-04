@@ -10,7 +10,8 @@ django.setup()
 from Trinamic.models import Product, Category, Item
 from MyUser.models import TmcUser
 from FieldValue.models import FieldValue, Field
-from Media.models import Media, MEDIA_TYPES
+from Media.models import Media, MEDIA_TYPES, MEDIA_TAGS
+from Resource.models import ResourceType, ResourceContent
 
 words = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -86,13 +87,32 @@ def create_media(n=20):
         title = random_text(3)
         print("create media: ", title)
         m_type = random.choice(MEDIA_TYPES)[0]
+        m_tag = random.choice(MEDIA_TAGS)[0]
         Media.objects.create(title=title,
                              filename=random_text(5),
                              media_type=m_type,
+                             tag=m_tag,
                              item_id=random.choice(items),
                              origin_url=f"http://{random_text(10)}",
                              using_url=f"http://{random_text(20)}"
                              )
+
+
+def create_resource(n=10, m=50):
+    res_types = [ResourceType.objects.create(name=random_text(3), alias=random_text(5)) for _ in range(n)]
+    items = Item.objects.all()
+    for _ in range(m):
+        name = random_text(7)
+        res_type = random.choice(res_types)
+        item = random.choice(items)
+        print("create resource content for ", res_type.alias, " named ", name)
+        ResourceContent.objects.create(
+            name=random_text(),
+            origin_url=f"http://{random_text(10)}",
+            using_url=f"http://{random_text(10)}",
+            resource_type_id=res_type.id,
+            item_id=item.id
+        )
 
 
 def gen():
@@ -105,6 +125,7 @@ def gen():
     create_field()
     create_fieldvalue()
     create_media()
+    create_resource()
 
 
 if __name__ == '__main__':

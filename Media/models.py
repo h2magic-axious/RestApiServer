@@ -6,10 +6,16 @@ MEDIA_TYPES = [
     ('VIDEO', '视频')
 ]
 
+MEDIA_TAGS = [
+    ('TITLE', '标题'),
+    ('CONTENT', '内容')
+]
+
 
 class Media(models.Model):
     title = models.CharField(max_length=30, default='请输入标题')
     filename = models.CharField(max_length=50)
+    tag = models.CharField(max_length=10, choices=MEDIA_TAGS, default='TITLE')
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
     origin_url = models.URLField()
     using_url = models.URLField(default='')

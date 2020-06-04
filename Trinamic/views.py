@@ -19,7 +19,6 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class CategoryList(generics.ListCreateAPIView):
-    # queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = OwnPagination
     filter_backends = [SearchFilter]

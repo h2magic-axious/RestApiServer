@@ -8,7 +8,8 @@ INSTALL_APPS = [
     'Trinamic',
     'FieldValue',
     'MyUser',
-    'Media'
+    'Media',
+    'Resource'
 ]
 
 
