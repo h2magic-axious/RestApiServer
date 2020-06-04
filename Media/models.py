@@ -12,7 +12,7 @@ class Media(models.Model):
     filename = models.CharField(max_length=50)
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
     origin_url = models.URLField()
-    using_url = models.URLField(blank=True)
+    using_url = models.URLField(default='')
 
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
 

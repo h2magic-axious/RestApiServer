@@ -4,7 +4,6 @@ from rest_framework import generics
 from rest_framework.filters import SearchFilter
 
 from Reference.Pagination import OwnPagination
-from rest_framework.permissions import IsAuthenticated
 
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -17,7 +16,6 @@ class ProductList(generics.ListCreateAPIView):
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAuthenticated]
 
 
 class CategoryList(generics.ListCreateAPIView):
@@ -40,7 +38,6 @@ class CategoryList(generics.ListCreateAPIView):
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticated]
 
 
 class ItemList(generics.ListCreateAPIView):
@@ -63,4 +60,3 @@ class ItemList(generics.ListCreateAPIView):
 class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    permission_classes = [IsAuthenticated]

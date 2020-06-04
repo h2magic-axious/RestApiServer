@@ -3,7 +3,6 @@ from MyUser.models import TmcUser
 from rest_framework import generics
 from rest_framework_jwt.utils import jwt_decode_handler
 from django.http import JsonResponse
-from rest_framework.permissions import IsAuthenticated
 
 
 def get_user(request):
@@ -27,4 +26,3 @@ class UserList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = TmcUser.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]

@@ -85,9 +85,10 @@ def create_media(n=20):
     for _ in range(n):
         title = random_text(3)
         print("create media: ", title)
+        m_type = random.choice(MEDIA_TYPES)[0]
         Media.objects.create(title=title,
                              filename=random_text(5),
-                             media_type=random.choice([MEDIA_TYPES])[0],
+                             media_type=m_type,
                              item_id=random.choice(items),
                              origin_url=f"http://{random_text(10)}",
                              using_url=f"http://{random_text(20)}"

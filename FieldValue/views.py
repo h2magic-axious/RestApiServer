@@ -5,7 +5,6 @@ from rest_framework import generics
 from rest_framework.filters import SearchFilter
 
 from Reference.Pagination import OwnPagination
-from rest_framework.permissions import IsAuthenticated
 
 
 class FieldList(generics.ListCreateAPIView):
@@ -19,7 +18,6 @@ class FieldList(generics.ListCreateAPIView):
 class FieldDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Field.objects.all()
     serializer_class = FieldSerializer
-    permission_classes = [IsAuthenticated]
 
 
 class FieldValueList(generics.ListCreateAPIView):
@@ -45,4 +43,3 @@ class FieldValueList(generics.ListCreateAPIView):
 class FieldValueDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = FieldValue.objects.all()
     serializer_class = FieldValueSerializer
-    permission_classes = [IsAuthenticated]
