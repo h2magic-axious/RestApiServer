@@ -24,5 +24,6 @@ urlpatterns = [
     path(RESTFUL_URL, include('Trinamic.urls')),
     path(RESTFUL_URL, include('MyUser.urls')),
     path(RESTFUL_URL, include('FieldValue.urls')),
-    path(RESTFUL_URL, include('Media.urls'))
+    path(RESTFUL_URL, include('Media.urls')),
+    path(RESTFUL_URL, include('Resource.urls'))
 ]

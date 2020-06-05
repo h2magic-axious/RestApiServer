@@ -89,7 +89,6 @@ def create_media(n=20):
         m_type = random.choice(MEDIA_TYPES)[0]
         m_tag = random.choice(MEDIA_TAGS)[0]
         Media.objects.create(title=title,
-                             filename=random_text(5),
                              media_type=m_type,
                              tag=m_tag,
                              item_id=random.choice(items),

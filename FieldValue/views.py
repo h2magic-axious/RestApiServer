@@ -3,8 +3,12 @@ from FieldValue.serializers import FieldSerializer, FieldValueSerializer
 
 from rest_framework import generics
 from rest_framework.filters import SearchFilter
-
+from django.http import JsonResponse
 from Reference.Pagination import OwnPagination
+
+
+def whole_fields(request):
+    return JsonResponse({'results': [{'id': f.id, 'name': f.name, 'alias': f.alias} for f in Field.objects.all()]})
 
 
 class FieldList(generics.ListCreateAPIView):
@@ -18,6 +22,11 @@ class FieldList(generics.ListCreateAPIView):
 class FieldDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Field.objects.all()
     serializer_class = FieldSerializer
+
+
+def whole_field_values(request):
+    return JsonResponse(
+        {'results': [{'id': fv.id, 'field': fv.field, 'value': fv.value} for fv in FieldValue.objects.all()]})
 
 
 class FieldValueList(generics.ListCreateAPIView):

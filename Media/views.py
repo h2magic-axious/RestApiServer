@@ -10,7 +10,12 @@ from django.http import JsonResponse
 
 
 def get_media_type(request):
-    return JsonResponse({'count': len(MEDIA_TYPES), 'results': [{'value': value, 'label': label} for value, label in MEDIA_TYPES]})
+    return JsonResponse(
+        {'count': len(MEDIA_TYPES), 'results': [{'value': value, 'label': label} for value, label in MEDIA_TYPES]})
+
+
+def whole_media(request):
+    return JsonResponse({'results': [{'id': m.id, 'title': m.title} for m in Media.objects.all()]})
 
 
 class MediaList(generics.ListCreateAPIView):
@@ -43,4 +48,5 @@ class MediaDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 def get_media_tag(request):
-    return JsonResponse({'count': len(MEDIA_TAGS), 'results': [{'value': value, 'label': label} for value, label in MEDIA_TAGS]})
+    return JsonResponse(
+        {'count': len(MEDIA_TAGS), 'results': [{'value': value, 'label': label} for value, label in MEDIA_TAGS]})

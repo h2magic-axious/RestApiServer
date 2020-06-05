@@ -5,7 +5,7 @@ from Resource.models import ResourceType, ResourceContent
 class ResourceTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResourceType
-        fields = '__all__'
+        fields = ['id', 'name', 'alias', 'resourcecontent_set']
 
 
 class ResourceContentSerializer(serializers.ModelSerializer):
