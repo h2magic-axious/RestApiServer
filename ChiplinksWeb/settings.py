@@ -107,18 +107,18 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
 }
 
-REST_FRAMEWORK = {
-    # 权限认证
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    # 身份验证
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
+# REST_FRAMEWORK = {
+#     # 权限认证
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+#     # 身份验证
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
+#     ),
+# }
 ROOT_URLCONF = 'ChiplinksWeb.urls'
 
 TEMPLATES = [

@@ -121,7 +121,7 @@ def create_blog(n=50):
         print("create blog category named: ", c_name)
         BlogCategory.objects.create(name=c_name)
 
-    categories = BlogCategory.objects.all()
+    categories = list(BlogCategory.objects.all())
 
     for _ in range(n // 5):
         t_name = random_text(3)
@@ -140,7 +140,7 @@ def create_blog(n=50):
 
         b.save()
 
-    articles = BlogArticle.objects.all()
+    articles = list(BlogArticle.objects.all())
 
     for _ in range(n):
         c_email = f"{random_text(5)}@{random_text(3)}.{random_text(3)}"

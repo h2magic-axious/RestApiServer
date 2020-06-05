@@ -12,7 +12,7 @@ def whole_blog_categories(request):
 
 
 class BlogCategoryList(generics.ListCreateAPIView):
-    queryset = BlogArticle.objects.all()
+    queryset = BlogCategory.objects.all()
     serializer_class = BlogCategorySerializer
     pagination_class = OwnPagination
     filter_backends = [SearchFilter]
@@ -60,7 +60,7 @@ class BlogArticleList(generics.ListCreateAPIView):
 
         tag_id = self.request.query_params.get('tag', None)
         if tag_id:
-            return queryset.filter(tag_id=tag_id)
+            return queryset.filter(tag=tag_id)
 
         score = self.request.query_params.get('score', None)
         if score:
@@ -85,7 +85,7 @@ class BlogCommentList(generics.ListCreateAPIView):
     search_fields = ['email', 'body']
 
     def get_queryset(self):
-        queryset = BlogArticle.objects.all()
+        queryset = BlogComment.objects.all()
 
         article_id = self.request.query_params.get('article', None)
         if article_id:

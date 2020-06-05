@@ -12,7 +12,7 @@ class BlogCategorySerializer(serializers.ModelSerializer):
 class BlogTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogTag
-        fields = ['id', 'name', 'blogarticle']
+        fields = ['id', 'name']
 
 
 class BlogArticleSerializer(serializers.ModelSerializer):
@@ -24,4 +24,4 @@ class BlogArticleSerializer(serializers.ModelSerializer):
 class BlogCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogComment
-        fields = ['id', 'email', 'score', 'body', 'blog_article', 'created']
+        fields = '__all__'

@@ -21,7 +21,7 @@ class BlogArticle(models.Model):
     title = models.CharField(max_length=30)
     body = models.TextField()
     excerpt = models.CharField(max_length=255)
-    created = models.DateTimeField(default=timezone.now)
+    created = models.DateField(default=timezone.now)
 
     category = models.ForeignKey(BlogCategory, on_delete=models.CASCADE)
     tag = models.ManyToManyField(BlogTag)
@@ -40,7 +40,7 @@ class BlogComment(models.Model):
     email = models.EmailField()
     score = models.IntegerField(default=3)
     body = models.TextField()
-    created = models.DateTimeField(default=timezone.now)
+    created = models.DateField(default=timezone.now)
 
     blog_article = models.ForeignKey(BlogArticle, on_delete=models.CASCADE)
 
