@@ -12,6 +12,7 @@ from MyUser.models import TmcUser
 from FieldValue.models import FieldValue, Field
 from Media.models import Media, MEDIA_TYPES, MEDIA_TAGS
 from Resource.models import ResourceType, ResourceContent
+from Blog.models import BlogCategory, BlogTag, BlogArticle, BlogComment
 
 words = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -114,6 +115,40 @@ def create_resource(n=10, m=50):
         )
 
 
+def create_blog(n=50):
+    for _ in range(n // 10):
+        c_name = random_text(5)
+        print("create blog category named: ", c_name)
+        BlogCategory.objects.create(name=c_name)
+
+    categories = BlogCategory.objects.all()
+
+    for _ in range(n // 5):
+        t_name = random_text(3)
+        print("create blog tag named: ", t_name)
+        BlogTag.objects.create(name=t_name)
+
+    tags = list(BlogTag.objects.all())
+
+    for _ in range(n):
+        a_title = random_text(7)
+        print("create blog article title is: ", a_title)
+        b = BlogArticle.objects.create(title=a_title, body=random_text(100), excerpt=random_text(50),
+                                       category=random.choice(categories))
+        for tag in random.sample(tags, random.randint(0, 5)):
+            b.tag.add(tag)
+
+        b.save()
+
+    articles = BlogArticle.objects.all()
+
+    for _ in range(n):
+        c_email = f"{random_text(5)}@{random_text(3)}.{random_text(3)}"
+        print("create blog comment email is： ", c_email)
+        BlogComment.objects.create(email=c_email, score=random.randint(1, 5), body=random_text(50),
+                                   blog_article=random.choice(articles))
+
+
 def gen():
     clear_database()
 
@@ -125,6 +160,7 @@ def gen():
     create_fieldvalue()
     create_media()
     create_resource()
+    create_blog()
 
 
 if __name__ == '__main__':

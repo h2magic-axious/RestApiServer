@@ -9,7 +9,8 @@ INSTALL_APPS = [
     'FieldValue',
     'MyUser',
     'Media',
-    'Resource'
+    'Resource',
+    'Blog'
 ]
 
 
