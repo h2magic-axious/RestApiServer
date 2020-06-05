@@ -3,8 +3,14 @@ from Resource.serializers import ResourceTypeSerializer, ResourceContentSerializ
 
 from rest_framework import generics
 from rest_framework.filters import SearchFilter
+from django.http import JsonResponse
 
 from Reference.Pagination import OwnPagination
+
+
+def whole_resource_type(request):
+    return JsonResponse(
+        {'results': [{'id': rt.id, 'name': rt.name, 'alias': rt.alias} for rt in ResourceType.objects.all()]})
 
 
 class ResourceTypeList(generics.ListCreateAPIView):
@@ -20,11 +26,17 @@ class ResourceTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ResourceTypeSerializer
 
 
+def whole_resource_content(request):
+    return JsonResponse({
+        'results': [{'id': rc.id, 'name': rc.name} for rc in ResourceContent.objects.all()]
+    })
+
+
 class ResourceContentList(generics.ListCreateAPIView):
     serializer_class = ResourceContentSerializer
     pagination_class = OwnPagination
     filter_backends = [SearchFilter]
-    search_fields = ['title', 'filename']
+    search_fields = ['name']
 
     def get_queryset(self):
         queryset = ResourceContent.objects.all()
