@@ -89,7 +89,7 @@ class BlogCommentList(generics.ListCreateAPIView):
 
         article_id = self.request.query_params.get('article', None)
         if article_id:
-            return queryset.filter(article_id=article_id)
+            return queryset.filter(blog_article_id=article_id)
 
         score = self.request.query_params.get('score', None)
         if score:
