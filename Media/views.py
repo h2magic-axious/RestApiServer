@@ -22,7 +22,7 @@ class MediaList(generics.ListCreateAPIView):
     serializer_class = MediaSerializer
     pagination_class = OwnPagination
     filter_backends = [SearchFilter]
-    search_fields = ['title', 'filename']
+    search_fields = ['title']
 
     def get_queryset(self):
         queryset = Media.objects.all()
