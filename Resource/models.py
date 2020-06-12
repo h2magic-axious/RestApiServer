@@ -4,15 +4,15 @@ from Trinamic.models import Item
 
 # Create your models here.
 class ResourceType(models.Model):
-    name = models.CharField(max_length=50)
-    alias = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
+    alias = models.CharField(max_length=200)
 
     class Meta:
         db_table = 'trinamic_resource_type'
 
 
 class ResourceContent(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)
     origin_url = models.URLField()
     using_url = models.URLField()
 

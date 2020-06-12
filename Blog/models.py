@@ -4,21 +4,21 @@ from django.utils import timezone
 
 # Create your models here.
 class BlogCategory(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=200)
 
     class Meta:
         db_table = 'trinamic_blog_category'
 
 
 class BlogTag(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=200)
 
     class Meta:
         db_table = 'trinamic_blog_tag'
 
 
 class BlogArticle(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=200)
     body = models.TextField()
     excerpt = models.CharField(max_length=255)
     created = models.DateField(default=timezone.now)

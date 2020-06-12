@@ -164,4 +164,7 @@ def gen():
 
 
 if __name__ == '__main__':
-    gen()
+    with open('/home/ubuntu/Code/items.txt', 'r', encoding='utf-8') as f:
+        for line in f:
+            model, category = line.strip().split()
+            Item.objects.create(model=model, category_id=int(category))
