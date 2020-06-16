@@ -101,24 +101,24 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
 ]
 
-JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=365),  # 设置 JWT Token 的有效时间
-    'JWT_AUTH_HEADER_PREFIX': 'JWT',  # 设置 请求头中的前缀
-    'JWT_ALLOW_REFRESH': True,
-}
-
-# REST_FRAMEWORK = {
-#     # 权限认证
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-#     # 身份验证
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-#         'rest_framework.authentication.SessionAuthentication',
-#         'rest_framework.authentication.BasicAuthentication',
-#     ),
+# JWT_AUTH = {
+#     # 'JWT_EXPIRATION_DELTA': datetime.timedelta(days=365),  # 设置 JWT Token 的有效时间
+#     'JWT_AUTH_HEADER_PREFIX': 'Token',  # 设置 请求头中的前缀
+#     'JWT_ALLOW_REFRESH': True,
 # }
+
+REST_FRAMEWORK = {
+    # 权限认证
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
+    # 身份验证
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    # 'rest_framework.authentication.SessionAuthentication',
+    # 'rest_framework.authentication.BasicAuthentication',
+    # ),
+}
 ROOT_URLCONF = 'ChiplinksWeb.urls'
 
 TEMPLATES = [
