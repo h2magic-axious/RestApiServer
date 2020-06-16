@@ -17,7 +17,6 @@ class Media(models.Model):
     tag = models.CharField(max_length=50, choices=MEDIA_TAGS, default='TITLE'
                                                                       '')
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPES)
-    origin_url = models.URLField()
     using_url = models.URLField(default='')
 
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
