@@ -39,34 +39,35 @@ EXISTING_MODELS = [
 
 def write_one(title, excerpt, title_picture, content_picture, fields, resources):
     try:
-        item = Item.objects.get('title')
+        item = Item.objects.get(model=title)
         item.excerpt = excerpt
-        Media.objects.create(title=title, tag='TITLE', media_type='PICTURE', using_url=title_picture,
-                             item=item)
-        for index, media in enumerate(content_picture):
-            if index:
-                Media.objects.create(title=title + '-Pin', tag='CONTENT', media_type='PICTURE', using_url=media,
-                                     item=item)
-            else:
-                Media.objects.create(title=title + '-Dia', tag='CONTENT', media_type='PICTURE', using_url=media,
-                                     item=item)
-
-        for k, v in fields.items():
-            try:
-                field = Field.objects.get(name=k)
-            except:
-                field = Field.objects.create(name=k, alias=k)
-
-            FieldValue.objects.create(field=field, value=v, item=item)
-
-        for res_t, res_c in resources.items():
-            try:
-                res_type = ResourceType.objects.get(name=res_t)
-            except:
-                res_type = ResourceType.objects.create(name=res_t, alias=res_t)
-
-            for li_text, li_a in res_c:
-                ResourceContent.objects.create(name=li_text, resource_type=res_type, using_url=li_a, item=item)
+        item.save()
+        # Media.objects.create(title=title, tag='TITLE', media_type='PICTURE', using_url=title_picture,
+        #                      item=item)
+        # for index, media in enumerate(content_picture):
+        #     if index:
+        #         Media.objects.create(title=title + '-Pin', tag='CONTENT', media_type='PICTURE', using_url=media,
+        #                              item=item)
+        #     else:
+        #         Media.objects.create(title=title + '-Dia', tag='CONTENT', media_type='PICTURE', using_url=media,
+        #                              item=item)
+        #
+        # for k, v in fields.items():
+        #     try:
+        #         field = Field.objects.get(name=k)
+        #     except:
+        #         field = Field.objects.create(name=k, alias=k)
+        #
+        #     FieldValue.objects.create(field=field, value=v, item=item)
+        #
+        # for res_t, res_c in resources.items():
+        #     try:
+        #         res_type = ResourceType.objects.get(name=res_t)
+        #     except:
+        #         res_type = ResourceType.objects.create(name=res_t, alias=res_t)
+        #
+        #     for li_text, li_a in res_c:
+        #         ResourceContent.objects.create(name=li_text, resource_type=res_type, using_url=li_a, item=item)
 
     except:
         print(title)
@@ -97,4 +98,4 @@ for title, link in models:
 
     resources = {t: c for t, c in zip(resource_type_list, resource_content_list)}
 
-    print(title, title_picture, content_picture)
+    write_one(title, excerpt, title_picture, content_picture, fields, resources)
