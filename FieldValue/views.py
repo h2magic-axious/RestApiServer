@@ -6,6 +6,8 @@ from rest_framework.filters import SearchFilter
 from django.http import JsonResponse
 from Reference.Pagination import OwnPagination
 
+from Trinamic.models import Category
+
 
 def whole_fields(request):
     return JsonResponse({'results': [{'id': f.id, 'name': f.name, 'alias': f.alias} for f in Field.objects.all()]})
@@ -27,6 +29,26 @@ class FieldDetail(generics.RetrieveUpdateDestroyAPIView):
 def whole_field_values(request):
     return JsonResponse(
         {'results': [{'id': fv.id, 'field': fv.field, 'value': fv.value} for fv in FieldValue.objects.all()]})
+
+
+def whole_field_value_with_item(request, item_id):
+    return JsonResponse(
+        {'results': [{'id': fv.id, 'field': fv.field, 'value': fv.value} for fv in FieldValue.objects.all() if
+                     fv.item_id == item_id]})
+
+
+def category_fields(request, c_id):
+    results = ['型号']
+    try:
+        category = Category.objects.get(pk=c_id)
+        for field in category.fields.split(','):
+            if field == '0':
+                continue
+            results.append(Field.objects.get(pk=int(field)).alias)
+    except:
+        pass
+
+    return JsonResponse({'results': results})
 
 
 class FieldValueList(generics.ListCreateAPIView):
