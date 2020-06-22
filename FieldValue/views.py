@@ -51,6 +51,22 @@ def category_fields(request, c_id):
     return JsonResponse({'results': results})
 
 
+def category_items(request, c_id):
+    category = Category.objects.get(pk=c_id)
+    fields = {field: Field.objects.get(pk=int(field)) for field in category.fields.split(',') if field != '0'}
+    result = []
+    for item in category.item_set.all():
+        res = {'型号': item.model}
+        for k, v in fields.items():
+            try:
+                fv = FieldValue.objects.get(item=item, field_id=k)
+                res[v.alias] = fv.value
+            except:
+                pass
+        result.append(res)
+    return JsonResponse({'results': result})
+
+
 class FieldValueList(generics.ListCreateAPIView):
     serializer_class = FieldValueSerializer
     pagination_class = OwnPagination
