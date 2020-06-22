@@ -28,6 +28,11 @@ def whole_categories(request):
     return JsonResponse({'results': [{'id': c.id, 'name': c.name, 'alias': c.alias} for c in Category.objects.all()]})
 
 
+def whole_categories_with_product(request, p_id):
+    return JsonResponse({'results': [{'id': c.id, 'name': c.name, 'alias': c.alias} for c in Category.objects.all() if
+                                     c.product_id == p_id]})
+
+
 class CategoryList(generics.ListCreateAPIView):
     serializer_class = CategorySerializer
 
@@ -52,6 +57,11 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def whole_items(request):
     return JsonResponse({'results': [{'id': item.id, 'model': item.model} for item in Item.objects.all()]})
+
+
+def whole_items_with_category(request, c_id):
+    return JsonResponse(
+        {'results': [{'id': item.id, 'model': item.model} for item in Item.objects.all() if item.category_id == c_id]})
 
 
 class ItemList(generics.ListCreateAPIView):
