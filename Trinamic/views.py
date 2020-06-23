@@ -60,7 +60,8 @@ def whole_items(request):
 
 
 def whole_items_with_category(request, c_id):
-    return JsonResponse({'results': [{'id': item.id, 'model': item.model} for item in Item.objects.all() if item.category_id == c_id]})
+    return JsonResponse(
+        {'results': [{'id': item.id, 'model': item.model} for item in Item.objects.all() if item.category_id == c_id]})
 
 
 class ItemList(generics.ListCreateAPIView):

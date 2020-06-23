@@ -11,5 +11,6 @@ urlpatterns = [
     path('fieldvalue/<int:pk>', views.FieldValueDetail.as_view()),
     path('fieldvalue/whole', views.whole_field_values),
     path('fieldvalue/whole/<int:item_id>', views.whole_field_value_with_item),
-    path('fieldvalue/category/<int:c_id>', views.category_items)
+    path('fieldvalue/category/<int:c_id>', views.category_items),
+    path('fieldvalue/item/<int:item_id>', views.get_item_all_field_value)
 ]

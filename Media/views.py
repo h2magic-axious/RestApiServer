@@ -18,6 +18,13 @@ def whole_media(request):
     return JsonResponse({'results': [{'id': m.id, 'title': m.title} for m in Media.objects.all()]})
 
 
+def whole_media_with_item(request, item_id):
+    return JsonResponse(
+        {'results': [{'id': m.id, 'title': m.title, 'tag': m.tag, 'type': m.media_type, 'url': m.using_url} for m in
+                     Media.objects.all() if
+                     m.item_id == item_id]})
+
+
 class MediaList(generics.ListCreateAPIView):
     serializer_class = MediaSerializer
     pagination_class = OwnPagination
@@ -50,3 +57,11 @@ class MediaDetail(generics.RetrieveUpdateDestroyAPIView):
 def get_media_tag(request):
     return JsonResponse(
         {'count': len(MEDIA_TAGS), 'results': [{'value': value, 'label': label} for value, label in MEDIA_TAGS]})
+
+
+def get_media(request, item_id, m_type, m_tag):
+    try:
+        obj = Media.objects.get(item_id=item_id, media_type=m_type, tag=m_tag)
+        return JsonResponse({'result': {'id': obj.id, 'url': obj.using_url}})
+    except:
+        return JsonResponse({'result': None})

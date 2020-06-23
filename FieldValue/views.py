@@ -6,7 +6,7 @@ from rest_framework.filters import SearchFilter
 from django.http import JsonResponse
 from Reference.Pagination import OwnPagination
 
-from Trinamic.models import Category
+from Trinamic.models import Category, Item
 
 
 def whole_fields(request):
@@ -53,16 +53,12 @@ def category_fields(request, c_id):
 
 def category_items(request, c_id):
     category = Category.objects.get(pk=c_id)
-    fields = {field: Field.objects.get(pk=int(field)) for field in category.fields.split(',') if field != '0'}
+
     result = []
     for item in category.item_set.all():
-        res = {'型号': item.model}
-        for k, v in fields.items():
-            try:
-                fv = FieldValue.objects.get(item=item, field_id=k)
-                res[v.alias] = fv.value
-            except:
-                pass
+        res = {'型号': item.model, 'id': item.id}
+        for fv in item.fieldvalue_set.all():
+            res[fv.field.alias] = fv.value
         result.append(res)
     return JsonResponse({'results': result})
 
@@ -90,3 +86,13 @@ class FieldValueList(generics.ListCreateAPIView):
 class FieldValueDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = FieldValue.objects.all()
     serializer_class = FieldValueSerializer
+
+
+def get_item_all_field_value(request, item_id):
+    item = Item.objects.get(pk=item_id)
+    results = []
+    # 由于 BootstrapVue 没有提供去掉table的thead的方法，这里使用型号作为表头
+    for fv in item.fieldvalue_set.all():
+        results.append({'型号': fv.field.alias, item.model: fv.value})
+
+    return JsonResponse({'results': results})

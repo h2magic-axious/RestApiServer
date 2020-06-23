@@ -5,6 +5,8 @@ from rest_framework import generics
 from rest_framework.filters import SearchFilter
 from django.http import JsonResponse
 
+from Trinamic.models import Item
+
 from Reference.Pagination import OwnPagination
 
 
@@ -30,6 +32,22 @@ def whole_resource_content(request):
     return JsonResponse({
         'results': [{'id': rc.id, 'name': rc.name} for rc in ResourceContent.objects.all()]
     })
+
+
+def whole_resource_content_with_item(request, item_id):
+    item = Item.objects.get(pk=item_id)
+    resource_list = item.resourcecontent_set.all()
+
+    type_list = set([res.resource_type.alias for res in resource_list])
+    results = {tl: [] for tl in type_list}
+    for res in resource_list:
+        results[res.resource_type.alias].append({
+            'id': res.id,
+            'name': res.name,
+            'url': res.using_url
+        })
+
+    return JsonResponse({'results': results, 'keys': list(type_list)})
 
 
 class ResourceContentList(generics.ListCreateAPIView):
