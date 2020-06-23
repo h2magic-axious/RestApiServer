@@ -1,0 +1,122 @@
+{
+  "model": "TMC262C-LA",
+  "excerpt": "TMC262是用于实验室自动化，3D打印，扫描仪和其他自动化设备应用的集成式步进电机预驱动器解决方案。 该器件能够驱动高达40mA的栅极电流，并由Trinamic StallGuard2™，CoolStep™，SpreadCycle™，MicroPlyer™技术供电。 TMC262设计用于9 ... 60V的电源电压。 该器件提供一个SPI和S / D接口。\n\n新型TMC262C改善了电机的静音性，并增加了低压侧短路保护。 建议将C版本用于新设计。",
+  "media": [
+    {
+      "name": "TMC262C-LA",
+      "url": "http://tmc-item.chiplinkstech.com/TMC262C-LA.png",
+      "type": "PICTURE",
+      "tag": "TITLE"
+    },
+    {
+      "name": "TMC262C-LA-Dia",
+      "url": "http://tmc-item.chiplinkstech.com/TMC262-LA-V2.svg",
+      "type": "PICTURE",
+      "tag": "CONTENT"
+    },
+    {
+      "name": "TMC262C-LA-Pin",
+      "url": "http://tmc-item.chiplinkstech.com/TMC262-LA.svg",
+      "type": "PICTURE",
+      "tag": "CONTENT"
+    }
+  ],
+  "fields": [
+    [
+      "Status",
+      "量产"
+    ],
+    [
+      "Axes",
+      1
+    ],
+    [
+      "Motor Supply",
+      "9...60V"
+    ],
+    [
+      "Microsteps",
+      "1...256"
+    ],
+    [
+      "SPI",
+      "Yes"
+    ],
+    [
+      "Step/Dir",
+      "Yes"
+    ],
+    [
+      "MicroPlyer™",
+      "Yes"
+    ],
+    [
+      "StallGuard2™",
+      "Yes"
+    ],
+    [
+      "CoolStep™",
+      "Yes"
+    ],
+    [
+      "SpreadCycle™",
+      "Yes"
+    ],
+    [
+      "Package",
+      "QFN32 (5x5)"
+    ]
+  ],
+  "resource": {
+    "Datasheet": [
+      [
+        "TMC262 + TMC262C Datasheet",
+        "http://tmc-item.chiplinkstech.com/TMC262_TMC262C_datasheet_Rev2.25.pdf"
+      ]
+    ],
+    "Documentation": [
+      [
+        "Getting Started",
+        "http://tmc-item.chiplinkstech.com/TMC262_Getting_Started.pdf"
+      ],
+      [
+        "Power Dissipation Calculation",
+        "http://tmc-item.chiplinkstech.com/TMC262_calculations.xls"
+      ],
+      [
+        "Rsense and Current Calculation",
+        "http://tmc-item.chiplinkstech.com/TMC262_Rsense_and_Current_Calculation.xlsx"
+      ]
+    ],
+    "Application Notes": [
+      [
+        "AN006 - N and P Power Stages",
+        "http://tmc-item.chiplinkstech.com/AN006-N_and_P_power_stages.pdf"
+      ],
+      [
+        "AN011 - Good Ground Connection",
+        "http://tmc-item.chiplinkstech.com/AN011_Good_Ground_Connection.pdf"
+      ],
+      [
+        "AN016 - TMC429 TMC26x Getting Started: Motion Control via S/D",
+        "http://tmc-item.chiplinkstech.com/AN016_TMC429_TMC26x_Getting_Started_01.pdf"
+      ],
+      [
+        "Application Note 005g - QFN32 (5x5)",
+        "http://tmc-item.chiplinkstech.com/AN005g-IC_Package_PCB_Footprint_Guidelines_QFN32_5x5.pdf"
+      ]
+    ],
+    "Quality": [
+      [
+        "Statement concerning RoHS compliance of TMC262",
+        "http://tmc-item.chiplinkstech.com/RoHS_ICs/TMC262_RoHS.pdf"
+      ]
+    ],
+    "Drawings": [
+      [
+        "TMC262 ECAD Symbol",
+        "http://tmc-item.chiplinkstech.com/TMC262-ECAD_Rev1.00.zip"
+      ]
+    ]
+  }
+}
