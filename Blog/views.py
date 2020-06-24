@@ -42,7 +42,7 @@ class BlogTagDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 def whole_blog_article(request):
-    return JsonResponse({'results': [{'id': ba.id, 'title': ba.title} for ba in BlogArticle.objects.all()]})
+    return JsonResponse({'results': [ba.json() for ba in BlogArticle.objects.all()]})
 
 
 class BlogArticleList(generics.ListCreateAPIView):

@@ -32,6 +32,16 @@ class BlogArticle(models.Model):
 
         super().save(*args, **kwargs)
 
+    def json(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'excerpt': self.excerpt,
+            'body': self.body,
+            'created': self.created,
+            'category': self.category.name,
+        }
+
     class Meta:
         db_table = 'trinamic_blog_article'
 
