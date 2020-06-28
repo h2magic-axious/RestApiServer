@@ -18,7 +18,7 @@ class BlogSearcher(BaseSearcher):
         for article in queryset:
             query_queue = [article.category.name, article.title, article.excerpt, article.body] + [tag.name for tag in
                                                                                                    article.tag.all()]
-            for query in query_queue:
+            for query in query_queue and article not in self.queryset:
                 if self.query in query:
                     self.queryset.append(article)
 
@@ -33,7 +33,7 @@ class ItemSearcher(BaseSearcher):
         for item in queryset:
             query_queue = [item.category.name, item.category.product.name, item.model, item.excerpt]
             for query in query_queue:
-                if self.query in query:
+                if self.query in query and item not in self.queryset:
                     self.queryset.append(item)
 
     def results(self):
