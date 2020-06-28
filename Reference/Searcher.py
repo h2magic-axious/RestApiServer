@@ -16,11 +16,26 @@ class BlogSearcher(BaseSearcher):
     def search(self):
         queryset = BlogArticle.objects.all()
         for article in queryset:
-            query_queue = [article.category.name, article.title, article.excerpt, article.body] + [tag.name for tag in
-                                                                                                   article.tag.all()]
-            for query in query_queue and article not in self.queryset:
-                if self.query in query:
+            if self.query in article.title:
+                self.queryset.append(article)
+                continue
+
+            if self.query in article.excerpt:
+                self.queryset.append(article)
+                continue
+
+            if self.query in article.body:
+                self.queryset.append(article)
+                continue
+
+            if self.query in article.category.name:
+                self.queryset.append(article)
+                continue
+
+            for tag in article.tag.all():
+                if self.query in tag.name:
                     self.queryset.append(article)
+                    break
 
     def results(self):
         self.search()
@@ -31,10 +46,21 @@ class ItemSearcher(BaseSearcher):
     def search(self):
         queryset = Item.objects.all()
         for item in queryset:
-            query_queue = [item.category.name, item.category.product.name, item.model, item.excerpt]
-            for query in query_queue:
-                if self.query in query and item not in self.queryset:
-                    self.queryset.append(item)
+            if self.query in item.model:
+                self.queryset.append(item)
+                continue
+
+            if self.query in item.excerpt:
+                self.queryset.append(item)
+                continue
+
+            if self.query in item.category.name:
+                self.queryset.append(item)
+                continue
+
+            if self.query in item.category.product.name:
+                self.queryset.append(item)
+                continue
 
     def results(self):
         self.search()
