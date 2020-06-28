@@ -19,7 +19,7 @@ from rest_framework_jwt.views import ObtainJSONWebToken
 
 from Reference.Searcher import search
 
-RESTFUL_URL = 'api/'
+RESTFUL_URL = 'api/private/v1/'
 
 urlpatterns = [
     path(RESTFUL_URL + 'login', ObtainJSONWebToken.as_view()),
