@@ -39,6 +39,14 @@ class Item(models.Model):
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
 
+    def json(self):
+        return {
+            'id': self.id,
+            'model': self.model,
+            'excerpt': self.excerpt,
+            'category': self.category.name
+        }
+
     def __repr__(self):
         return self.model
 

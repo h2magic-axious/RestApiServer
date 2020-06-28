@@ -17,7 +17,9 @@ Including another URLconf
 from django.urls import path, include
 from rest_framework_jwt.views import ObtainJSONWebToken
 
-RESTFUL_URL = 'api/private/v1/'
+from Reference.Searcher import search
+
+RESTFUL_URL = 'api/'
 
 urlpatterns = [
     path(RESTFUL_URL + 'login', ObtainJSONWebToken.as_view()),
@@ -26,5 +28,6 @@ urlpatterns = [
     path(RESTFUL_URL, include('FieldValue.urls')),
     path(RESTFUL_URL, include('Media.urls')),
     path(RESTFUL_URL, include('Resource.urls')),
-    path(RESTFUL_URL, include('Blog.urls'))
+    path(RESTFUL_URL, include('Blog.urls')),
+    path('api/search/<str:query>', search)
 ]
