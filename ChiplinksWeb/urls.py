@@ -29,5 +29,5 @@ urlpatterns = [
     path(RESTFUL_URL, include('Media.urls')),
     path(RESTFUL_URL, include('Resource.urls')),
     path(RESTFUL_URL, include('Blog.urls')),
-    path('api/search/<str:query>', search)
+    path('api/private/v1/search/<str:query>', search)
 ]
