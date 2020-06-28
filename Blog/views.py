@@ -52,21 +52,16 @@ class BlogArticleList(generics.ListCreateAPIView):
     search_fields = ['title', 'excerpt', 'body']
 
     def get_queryset(self):
-        queryset = BlogArticle.objects.all()
-
         category_id = self.request.query_params.get('category', None)
         if category_id:
-            return queryset.filter(category_id=category_id)
+            return BlogArticle.objects.filter(category_id=category_id)
 
         tag_id = self.request.query_params.get('tag', None)
         if tag_id:
-            return queryset.filter(tag=tag_id)
+            tag = BlogTag.objects.get(pk=tag_id)
+            return tag.blogarticle_set.all()
 
-        score = self.request.query_params.get('score', None)
-        if score:
-            return queryset.filter(blogcomment__score=score)
-
-        return queryset
+        return BlogArticle.objects.all()
 
 
 class BlogArticleDetail(generics.RetrieveUpdateDestroyAPIView):
