@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.urls import path, include
 from rest_framework_jwt.views import ObtainJSONWebToken
-
+from rest_framework.documentation import include_docs_urls
 from Reference.Searcher import search
 
 RESTFUL_URL = 'api/private/v1/'
@@ -29,5 +29,6 @@ urlpatterns = [
     path(RESTFUL_URL, include('Media.urls')),
     path(RESTFUL_URL, include('Resource.urls')),
     path(RESTFUL_URL, include('Blog.urls')),
-    path('api/private/v1/search/<str:query>', search)
+    path('api/private/v1/search/<str:query>', search),
+    path('docs/', include_docs_urls(title='API接口文档'))
 ]
