@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'w!a=8iec@uh+q3p12&ycoauc1&q+*j63_k@ldn#9mw_#b1o0-i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -101,12 +101,6 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
 ]
 
-# JWT_AUTH = {
-#     # 'JWT_EXPIRATION_DELTA': datetime.timedelta(days=365),  # 设置 JWT Token 的有效时间
-#     'JWT_AUTH_HEADER_PREFIX': 'Token',  # 设置 请求头中的前缀
-#     'JWT_ALLOW_REFRESH': True,
-# }
-
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
     # 权限认证
@@ -125,7 +119,7 @@ ROOT_URLCONF = 'ChiplinksWeb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -185,8 +179,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static")
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')

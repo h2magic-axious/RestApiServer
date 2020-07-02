@@ -30,5 +30,7 @@ urlpatterns = [
     path(RESTFUL_URL, include('Resource.urls')),
     path(RESTFUL_URL, include('Blog.urls')),
     path('api/private/v1/search/<str:query>', search),
-    path('docs/', include_docs_urls(title='API接口文档'))
+    path('docs/', include_docs_urls(title='API接口文档')),
+
+    path('trinamic/', include('Trinamic.local_urls'))
 ]

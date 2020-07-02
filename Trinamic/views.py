@@ -83,3 +83,13 @@ class ItemList(generics.ListCreateAPIView):
 class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+
+def seo_product_center(request, p_id):
+    category_set = Category.objects.filter(product__id=p_id)
+    category_name_list = [c.name for c in category_set]
+    items = []
+    for c in category_set:
+        items.extend([item.model for item in c.item_set.all()])
+
+    return JsonResponse({'name': 'keywords', 'content': ','.join(category_name_list + items)})
