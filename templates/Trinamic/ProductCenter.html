@@ -1,0 +1,66 @@
+{% extends 'BASE.html' %}
+
+{% load static %}
+{% load trinamic_tags %}
+
+{% block SEO_BLOCK %}
+
+    <meta name="keywords" content="{% seo_product_center product.id %}">
+
+{% endblock %}
+
+{% block MainBody %}
+    <div>
+        <article class="card" style="width: 100%;">
+            <div class="card-body"><h4 class="card-title">{{ product.alias }}: {{ product.name }}</h4></div>
+        </article>
+        <div class="card">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="list-group">
+                            {% for category in product.category_set.all %}
+                                <a type="button" class="list-group-item list-group-item-action"
+                                   href="{% url 'Trinamic:product-center' product.id category.id %}">
+                                    {{ category.alias }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-10"><h4>{{ category.alias }} ({{ category.name }})</h4>
+                        <p>{{ category.excerpt }}</p>
+                        <h6><span
+                                class="badge badge-primary">单击某行可跳转到对应产品详情页面</span></h6>
+                        <div>
+                            <table role="table" aria-busy="false" aria-colcount="9"
+                                   class="table b-table table-striped table-hover" id="__BVID__37">
+                                <thead role="rowgroup" class="">
+                                <tr role="row">
+                                    <th>
+                                        <div>型号</div>
+                                    </th>
+                                    {% for field in category_fields %}
+                                        <th role="columnheader" scope="col" aria-colindex="1" class="">
+                                            <div>{{ field }}</div>
+                                        </th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody role="rowgroup">
+                                {% for item in category.item_set.all %}
+                                    <tr role="row" tabindex="0" class="">
+                                        <td role="cell" class=""><a
+                                                href="{% url 'Trinamic:item-detail' %}">{{ item.model }}</a></td>
+                                        {% for field in category_fields %}
+                                            <td role="cell" class="">{% get_item_fieldvalue item.id field %}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div><!----><!----></div>
+    </div>
+{% endblock %}

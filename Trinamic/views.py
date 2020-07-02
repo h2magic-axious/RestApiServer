@@ -92,4 +92,4 @@ def seo_product_center(request, p_id):
     for c in category_set:
         items.extend([item.model for item in c.item_set.all()])
 
-    return JsonResponse({'name': 'keywords', 'content': ','.join(category_name_list + items)})
+    return JsonResponse({'content': ','.join(category_name_list + items)})

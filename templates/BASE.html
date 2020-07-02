@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Chiplinks</title>
-    <!-- CSS only -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <!-- JS, Popper.js, and jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"></script>
+    {% include 'Static/js.html' %}
+
+    {% include 'Static/css.html' %}
+
+    <meta name="keywords" content="致力于精密运动控制-智联微">
+    <meta name="description"
+          content="智联微-专注于电机驱动芯片的代理销售和电机驱动方案开发，产品包括电机驱动芯片, 步进电机驱动器, 伺服电机驱动器, 运动控制卡. TRINAMIC中国区一级代理.">
 
     {% block SEO_BLOCK %}
     {% endblock %}
 </head>
 <body>
 {% include "NAV.html" %}
+
+{% block MainBody %}
+
+{% endblock %}
+
+{% include "FOOTER.html" %}
 </body>
 </html>

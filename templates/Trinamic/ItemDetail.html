@@ -1,0 +1,82 @@
+{% extends 'BASE.html' %}
+
+{% load static %}
+{% load trinamic_tags %}
+
+{% block SEO_BLOCK %}
+
+    <meta name="keywords" content="{{ item.model }}">
+    <meta name="description" content="{{ item.excerpt }}">
+
+{% endblock %}
+
+{% block MainBody %}
+
+
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="card" style="width: 100%;">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <img class="rounded-0 card-img"
+                                 src="{% get_item_media item.id 'TITLE' 'PICTURE' %}">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <p class="card-text">{{ item.excerpt }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body"><h4 data-v-4de81318="" class="card-title">主要参数</h4>
+                        <table role="table" aria-busy="false" aria-colcount="2"
+                               class="table b-table table-striped table-hover" id="__BVID__54" style="width: 100%;">
+                            <tbody role="rowgroup">
+                            {% for f_type, f_value in fieldvalues %}
+                                <tr role="row" class="">
+                                    <td aria-colindex="1" role="cell" class="">{{ f_type }}</td>
+                                    <td aria-colindex="2" role="cell" class="">{{ f_value }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body"><h4 class="card-title">原理图/引脚图</h4>
+                        {% for media in medis_list %}
+                            <div class="card" style="width: 100%;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-12">
+                                        <img class="rounded-0 card-img"
+                                             src="{{ media.using_url }}">
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body"><h4 data-v-4de81318="" class="card-title">下载</h4>
+                        {% for resource, res_content in resources.items %}
+                            <div class="card" style="width: 100%;">
+                                <div class="card-header">
+                                    {{ resource }}
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    {% for res_c in res_content %}
+                                        <li class="list-group-item">{{ forloop.counter }}. <a
+                                                href="{{ res_c.using_url }}">{{ res_c.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
