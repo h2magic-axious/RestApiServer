@@ -18,10 +18,6 @@ def seo_product_center(product_id):
     category_set = Category.objects.filter(product__id=product_id)
     content = ','.join(c.name for c in category_set)
 
-    for category in category_set:
-        items = ','.join(item.model for item in category.item_set.all())
-        content += f',{items}'
-
     return content
 
 
